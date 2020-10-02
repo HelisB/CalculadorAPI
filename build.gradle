@@ -26,20 +26,24 @@ dependencies {
 }
 
 test {
-	useJUnitPlatform()
-	finalizedBy jacocoTestReport
+	useJUnitPlatform()    
+	finalizedBy jacocoTestReport // report is always generated after tests run
 }
+
 jacocoTestReport {
-dependsOn test
+    dependsOn test // tests are required to run before generating the report
 }
+
+
 jacoco {
-toolVersion = "0.8.5"
-reportsDir = file("build/reports/jacoco")
+    toolVersion = "0.8.5"
+    reportsDir = file("build/reports/jacoco")
 }
+
 jacocoTestReport {
-reports {
-xml.enabled true
-csv.enabled false
-html.destination file("${buildDir}/jacocoHtml")
-}
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
 }
